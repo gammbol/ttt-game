@@ -19,9 +19,9 @@ void endGame(enum GAME_STATUS, int);
 
 int main()
 {
-    char playAgain = 'n';
-
     srand(time(NULL));
+
+    char playAgain = 'n';
 
     while (1)
     {
@@ -53,47 +53,89 @@ void fieldInit(char* field)
 
 void playGame()
 {
+    int priority = (rand() % 2) + 1;
+
     char sign = 'x';
     char field[9] = {};
     int turns_count = 0;
     fieldInit(field);
-
+    
     while (1)
     {
         turns_count++;
-        drawField(field);
-        playerTurn(field, sign);
 
-        if (isEnd(field))
+        if (priority == 1)
         {
             drawField(field);
-            endGame(WIN, turns_count);
-            return;
-        }
-        else if (isFull(field))
-        {
-            drawField(field);
-            endGame(TIE, turns_count);
-            return;
-        }
+            playerTurn(field, sign);
 
-        sign = (sign == 'x') ? 'o' : 'x';
-        cpuTurn(field, sign);
+            if (isEnd(field))
+            {
+                drawField(field);
+                endGame(WIN, turns_count);
+                return;
+            }
+            else if (isFull(field))
+            {
+                drawField(field);
+                endGame(TIE, turns_count);
+                return;
+            }
 
-        if (isEnd(field))
-        {
-            drawField(field);
-            endGame(LOSE, turns_count);
-            return;
-        }
-        else if (isFull(field))
-        {
-            drawField(field);
-            endGame(TIE, turns_count);
-            return;
-        }
+            sign = (sign == 'x') ? 'o' : 'x';
+            cpuTurn(field, sign);
 
-        sign = (sign == 'x') ? 'o' : 'x';
+            if (isEnd(field))
+            {
+                drawField(field);
+                endGame(LOSE, turns_count);
+                return;
+            }
+            else if (isFull(field))
+            {
+                drawField(field);
+                endGame(TIE, turns_count);
+                return;
+            }
+
+            sign = (sign == 'x') ? 'o' : 'x';
+        }
+        if (priority == 2)
+        {
+            cpuTurn(field, sign);
+
+            if (isEnd(field))
+            {
+                drawField(field);
+                endGame(LOSE, turns_count);
+                return;
+            }
+            else if (isFull(field))
+            {
+                drawField(field);
+                endGame(TIE, turns_count);
+                return;
+            }
+
+            sign = (sign == 'x') ? 'o' : 'x';
+            drawField(field);
+            playerTurn(field, sign);
+
+            if (isEnd(field))
+            {
+                drawField(field);
+                endGame(WIN, turns_count);
+                return;
+            }
+            else if (isFull(field))
+            {
+                drawField(field);
+                endGame(TIE, turns_count);
+                return;
+            }
+
+            sign = (sign == 'x') ? 'o' : 'x';
+        }
     }
 }
 
