@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ttt_game.dir/main.c.o"
-  "CMakeFiles/ttt_game.dir/main.c.o.d"
-  "ttt_game"
+  "CMakeFiles/ttt_game.dir/main.c.obj"
+  "CMakeFiles/ttt_game.dir/main.c.obj.d"
+  "libttt_game.dll.a"
+  "ttt_game.exe"
+  "ttt_game.exe.manifest"
   "ttt_game.pdb"
 )
 
